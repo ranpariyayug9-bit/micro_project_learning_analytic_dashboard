@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Analytics Dashboard | Tapi Diploma Engineering College</title>
+  <meta name="description" content="AI-Powered Educational Analytics Platform for Students, Teachers, and Administrators with Real-Time Performance Tracking, Early Warning Alerts, MySQL 13 Tables Schema, and Chapter 5 Feasibility Analysis.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- ═══ AMBIENT GLOW MESH BACKGROUND ═══════════════ -->
+<div class="ambient-glow-mesh">
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+  <div class="glow-orb orb-4"></div>
+</div>
+
+<div class="app-shell">
+
+  <!-- ═══ SIDEBAR ════════════════════════════════════ -->
+  <aside class="sidebar">
+
+    <!-- Logo -->
+    <a class="sidebar-logo" href="#">
+      <div class="logo-mark">TDEC</div>
+      <div>
+        <div class="logo-text">LearnIQ Analytics</div>
+        <div class="logo-sub">Tapi Diploma Engg.</div>
+      </div>
+    </a>
+
+    <!-- 6-Way Multi-Portal Switcher -->
+    <div class="portal-switcher">
+      <button class="portal-btn active" id="btn-portal-student" title="Student Dashboard">Student</button>
+      <button class="portal-btn" id="btn-portal-teacher" title="Teacher Dashboard">Teacher</button>
+      <button class="portal-btn" id="btn-portal-admin" title="Administrator Dashboard">Admin</button>
+      <button class="portal-btn" id="btn-portal-arch" title="System Design & Architecture">Sys</button>
+      <button class="portal-btn" id="btn-portal-budget" title="Budget & Feasibility Analysis">Cost</button>
+      <button class="portal-btn" id="btn-portal-trust" title="AI Trust Guard & Fact Checker">AI Trust</button>
+    </div>
+
+    <!-- 1. STUDENT NAVIGATION -->
+    <nav class="sidebar-nav" id="nav-student">
+      <div class="nav-group-label">Student Portal</div>
+      <a class="nav-item active" data-page="dashboard">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        Overview
+      </a>
+      <a class="nav-item" data-page="attendance">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+        Attendance & Calc
+      </a>
+      <a class="nav-item" data-page="performance">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+        Performance
+      </a>
+      <a class="nav-item" data-page="quizzes-exams">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        Quizzes & Exams
+        <span class="nav-badge" style="background:var(--purple);">Q&E</span>
+      </a>
+      <a class="nav-item" data-page="assignments">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="m9 14 2 2 4-4"/></svg>
+        Assignments
+        <span class="nav-badge">12</span>
+      </a>
+      <a class="nav-item" data-page="ai-insights">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 5 5"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M21 21a9 9 0 1 1-18 0"/></svg>
+        AI Study Plan
+      </a>
+      <a class="nav-item" data-page="placement">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Placement Tracker
+        <span class="nav-badge" style="background:var(--emerald);">86%</span>
+      </a>
+      <a class="nav-item" data-page="ai-assistant">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+        AI Assistant
+      </a>
+      <a class="nav-item" data-page="gamification">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
+        Achievements
+      </a>
+    </nav>
+
+    <!-- 2. TEACHER NAVIGATION -->
+    <nav class="sidebar-nav" id="nav-teacher" style="display:none;">
+      <div class="nav-group-label">Teacher Portal</div>
+      <a class="nav-item" data-page="t-overview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        Class Overview
+      </a>
+      <a class="nav-item" data-page="t-students">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Student Analytics
+      </a>
+      <a class="nav-item" data-page="t-quizzes">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        Quiz & Exam Analysis
+      </a>
+      <a class="nav-item" data-page="t-atrisk">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        At-Risk Early Warning
+        <span class="nav-badge" style="background:var(--rose);">8</span>
+      </a>
+      <a class="nav-item" data-page="t-reports">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+        8 Reports Center
+      </a>
+    </nav>
+
+    <!-- 3. ADMINISTRATOR NAVIGATION (Section 4.1, 4.2.1, 4.6.1, 4.14) -->
+    <nav class="sidebar-nav" id="nav-admin" style="display:none;">
+      <div class="nav-group-label">Administrator Portal</div>
+      <a class="nav-item" data-page="a-overview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Institutional KPI
+      </a>
+      <a class="nav-item" data-page="a-users">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        User Mgmt & RBAC
+      </a>
+      <a class="nav-item" data-page="a-departments">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-4 7 4v12"/><path d="M9 12h6"/></svg>
+        Department Analytics
+      </a>
+      <a class="nav-item" data-page="a-logs">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Security & Audit Logs
+      </a>
+    </nav>
+
+    <!-- 4. SYSTEM DESIGN NAVIGATION (Chapter 4) -->
+    <nav class="sidebar-nav" id="nav-arch" style="display:none;">
+      <div class="nav-group-label">Chapter 4: System Design</div>
+      <a class="nav-item" data-page="arch-overview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        4-Layer Architecture
+      </a>
+      <a class="nav-item" data-page="arch-db">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+        MySQL 13 Tables & SQL
+      </a>
+      <a class="nav-item" data-page="arch-flow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        AI/ML Data Flow
+      </a>
+      <a class="nav-item" data-page="arch-agile">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        Agile Methodology
+      </a>
+      <a class="nav-item" data-page="arch-testing">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        7-Stage Testing Suite
+      </a>
+    </nav>
+
+    <!-- 5. BUDGET & FEASIBILITY NAVIGATION (Chapter 5) -->
+    <nav class="sidebar-nav" id="nav-budget" style="display:none;">
+      <div class="nav-group-label">Chapter 5: Feasibility</div>
+      <a class="nav-item" data-page="b-costs">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+        Budget Breakdown (₹0)
+      </a>
+      <a class="nav-item" data-page="b-feasibility">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Tech & Economic Feasibility
+      </a>
+      <a class="nav-item" data-page="b-operational">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        Operational Workflows
+      </a>
+      <a class="nav-item" data-page="b-safety">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Safety & Environment
+      </a>
+      <a class="nav-item" data-page="b-cert">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+        Official Certificate
+      </a>
+    </nav>
+
+    <!-- 6. AI TRUST GUARD NAVIGATION -->
+    <nav class="sidebar-nav" id="nav-trust" style="display:none;">
+      <div class="nav-group-label">AI Trust Guard</div>
+      <a class="nav-item" data-page="h-scanner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2c.57.14.76.69.76 1.25V13z"/><path d="m9 12 2 2 4-4"/></svg>
+        Fact-Check Scanner
+      </a>
+      <a class="nav-item" data-page="h-analytics">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+        AI Quality Analytics
+      </a>
+    </nav>
+
+    <!-- Sidebar User Details -->
+    <div class="sidebar-user">
+      <div class="user-card">
+        <div class="user-avatar" id="user-display-avatar">SP</div>
+        <div>
+          <div class="user-name" id="user-display-name">Saksham Patel</div>
+          <div class="user-role" id="user-display-role">Student • CE Sem 6</div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ═══ MAIN CONTENT AREA ═══════════════════════════ -->
+  <div class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 id="topbar-title">Student Overview</h1>
+        <p id="topbar-sub">Your real-time academic performance summary &bull; Tapi Diploma Engineering College</p>
+      </div>
+      <div class="topbar-right">
+        
+        <!-- Theme Switcher Pills -->
+        <div class="theme-selector-wrap" title="Change Background Theme">
+          <div class="theme-pill pill-cosmic active" data-theme="cosmic" title="Cosmic Nebula (Default)"></div>
+          <div class="theme-pill pill-cyberpunk" data-theme="cyberpunk" title="Cyberpunk Neon"></div>
+          <div class="theme-pill pill-aurora" data-theme="aurora" title="Emerald Aurora"></div>
+          <div class="theme-pill pill-midnight" data-theme="midnight" title="Obsidian Gold"></div>
+          <div class="theme-pill pill-light" data-theme="light" title="Clean Frost Light"></div>
+        </div>
+
+
+        <div class="status-chip">
+          <span class="status-dot" id="status-dot"></span>
+          <span id="status-text">Backend Status</span>
+        </div>
+        
+        <a href="poster.html" class="topbar-btn" title="View & Print Official Project Presentation Poster" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none; padding:0 12px; width:auto; font-size:0.8rem; font-weight:700; color:#38bdf8; border:1px solid rgba(0,210,255,0.4); background:rgba(0,210,255,0.1); border-radius:8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          Poster 📜
+        </a>
+
+        <button class="topbar-btn" id="btn-settings" title="Settings / API Config" aria-label="Settings">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ═══ SCROLLABLE CONTENT PAGES ═══════════════════ -->
+    <div class="page-scroll">
+
+      <!-- ───────────────────────────────────────────────
+           1. STUDENT PAGES
+           ─────────────────────────────────────────────── -->
+      <div id="pages-student">
+
+        <!-- Dashboard Overview -->
+        <section id="page-dashboard" class="page-section active">
+          <div class="stat-grid">
+            <div class="stat-card clickable-stat" id="stat-card-cgpa" data-page="performance" role="button" tabindex="0" title="Click to view Performance & CGPA Analytics">
+              <div class="stat-icon indigo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div class="stat-content-wrap">
+                <div class="stat-val" id="stat-cgpa">8.74</div>
+                <div class="stat-label">Current CGPA</div>
+                <div class="stat-trend up">↑ Predicted 8.9 this sem</div>
+              </div>
+              <div class="stat-arrow-hint" title="Open Performance">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="stat-card clickable-stat" id="stat-card-attendance" data-page="attendance" role="button" tabindex="0" title="Click to view Attendance Records & GTU Calculator">
+              <div class="stat-icon cyan">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+              </div>
+              <div class="stat-content-wrap">
+                <div class="stat-val" id="stat-attendance">82%</div>
+                <div class="stat-label">Overall Attendance</div>
+                <div class="stat-trend down">⚠ SE at 70% (Below 75%)</div>
+              </div>
+              <div class="stat-arrow-hint" title="Open Attendance">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="stat-card clickable-stat" id="stat-card-courses" role="button" tabindex="0" title="Click to view Enrolled Active Courses">
+              <div class="stat-icon purple">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              </div>
+              <div class="stat-content-wrap">
+                <div class="stat-val" id="stat-courses">6</div>
+                <div class="stat-label">Active Courses</div>
+                <div class="stat-trend up">↑ 4 on target / 2 watch</div>
+              </div>
+              <div class="stat-arrow-hint" title="View Active Courses">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="stat-card clickable-stat" id="stat-card-points" data-page="gamification" role="button" tabindex="0" title="Click to view Badges & Achievements">
+              <div class="stat-icon emerald">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
+              </div>
+              <div class="stat-content-wrap">
+                <div class="stat-val" id="stat-points">2,840</div>
+                <div class="stat-label">XP Points Earned</div>
+                <div class="stat-trend up">Level 12 Code Warrior</div>
+              </div>
+              <div class="stat-arrow-hint" title="Open Achievements">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2 mb-20">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Academic Performance Trend</div>
+              <div class="card-sub">Monthly score average across courses (2026)</div>
+              <div class="chart-wrap"><canvas id="chart-perf-trend"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Subject Proficiency Radar</div>
+              <div class="card-sub">Comparative mastery across all 6 enrolled subjects</div>
+              <div class="chart-wrap"><canvas id="chart-subj-radar"></canvas></div>
+            </div>
+          </div>
+
+          <div class="grid-2-1">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>Attendance Summary (GTU 75% Rule)</div>
+              <div class="card-sub">Formula: Attendance % = (Classes Attended / Total Classes) × 100</div>
+              <div class="attendance-list" id="att-bar-list"></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Notifications & Alerts</div>
+              <div class="card-sub">Proactive academic alerts & reminders</div>
+              <div id="notif-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Attendance Page with Module 4.6.3 Interactive Calculator -->
+        <section id="page-attendance" class="page-section">
+          <div class="card mb-20">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>Subject-Wise Attendance Breakdown (Module 4.6.3)</div>
+            <div class="card-sub">Mandatory minimum requirement: 75% according to college regulations</div>
+            <div id="att-full-list"></div>
+          </div>
+
+          <!-- Interactive Attendance Target Calculator (Formula from Section 4.6.3) -->
+          <div class="att-calc-card">
+            <div class="card-title" style="color:var(--cyan);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 10h10"/><path d="M7 14h10"/><path d="M12 7v10"/></svg>
+              Interactive Attendance Percentage Calculator & Shortage Planner
+            </div>
+            <p style="font-size:0.80rem; color:var(--text-secondary); margin-top:4px;">
+              Formula: <code>Attendance Percentage = (Classes Attended / Total Classes) × 100</code>
+            </p>
+
+            <div class="calc-inputs-grid">
+              <div class="calc-field">
+                <label for="calc-subject-select">Select Course</label>
+                <select id="calc-subject-select" class="calc-input">
+                  <option value="Data Structures">Data Structures (29/32 - 91%)</option>
+                  <option value="Web Technology">Web Technology (26/30 - 88%)</option>
+                  <option value="Machine Learning">Machine Learning (22/28 - 79%)</option>
+                  <option value="DBMS">DBMS (28/33 - 85%)</option>
+                  <option value="Software Engg." selected>Software Engg. (21/30 - 70%)</option>
+                  <option value="Computer Networks">Computer Networks (20/26 - 77%)</option>
+                  <option value="custom">Custom Values...</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label for="calc-attended">Classes Attended</label>
+                <input type="number" id="calc-attended" class="calc-input" value="21" min="0" />
+              </div>
+              <div class="calc-field">
+                <label for="calc-total">Total Classes Held</label>
+                <input type="number" id="calc-total" class="calc-input" value="30" min="1" />
+              </div>
+              <div class="calc-field">
+                <label for="calc-target">Target Threshold (%)</label>
+                <input type="number" id="calc-target" class="calc-input" value="75" min="50" max="100" />
+              </div>
+            </div>
+
+            <div class="calc-result-banner" id="calc-result-display">
+              <div class="calc-result-text" id="calc-result-msg">
+                Current Attendance: <strong>70.0%</strong>. ⚠️ Below 75% threshold! You must attend <strong>next 6 consecutive classes</strong> without missing any to reach 75%.
+              </div>
+              <div class="calc-badge danger" id="calc-result-badge">Shortage Warning</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Performance Page -->
+        <section id="page-performance" class="page-section">
+          <div class="card mb-20" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.08)); border-color: rgba(99, 102, 241, 0.3);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+              <div>
+                <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); font-weight:700;">Academic Standing & CGPA Trajectory</div>
+                <div style="font-size:1.65rem; font-weight:800; color:var(--text-primary); margin-top:4px;">
+                  Current CGPA: <span style="color:var(--indigo);">8.74</span> / 10.0
+                  <span style="font-size:0.80rem; font-weight:700; color:var(--emerald); background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); padding:4px 10px; border-radius:12px; margin-left:8px;">First Class with Distinction</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-secondary); margin-top:6px;">
+                  Computer Engineering &bull; Semester 6 &bull; 114 / 134 Credits Completed &bull; Department Rank: #4 of 68
+                </div>
+              </div>
+              <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <div style="background:rgba(0,0,0,0.3); padding:10px 16px; border-radius:8px; border:1px solid var(--border); text-align:center;">
+                  <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Predicted SGPA</div>
+                  <div style="font-size:1.25rem; font-weight:800; color:var(--emerald);">8.90 ↑</div>
+                </div>
+                <div style="background:rgba(0,0,0,0.3); padding:10px 16px; border-radius:8px; border:1px solid var(--border); text-align:center;">
+                  <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Sem 5 SGPA</div>
+                  <div style="font-size:1.25rem; font-weight:800; color:var(--cyan);">8.80</div>
+                </div>
+                <div style="background:rgba(0,0,0,0.3); padding:10px 16px; border-radius:8px; border:1px solid var(--border); text-align:center;">
+                  <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Target CGPA</div>
+                  <div style="font-size:1.25rem; font-weight:800; color:var(--purple);">8.85+</div>
+                </div>
+              </div>
+            </div>
+            
+            <div style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <div style="font-size:0.78rem; color:var(--text-muted);">
+                <strong style="color:var(--text-secondary);">Semester SGPA Progression:</strong> Sem 1 (8.40) &bull; Sem 2 (8.55) &bull; Sem 3 (8.60) &bull; Sem 4 (8.70) &bull; Sem 5 (8.80) &bull; Sem 6 Projected (8.90)
+              </div>
+              <button class="btn-secondary" id="btn-perf-view-courses" style="font-size:0.78rem; padding:6px 14px; width:auto;" type="button">📚 View Enrolled Courses (6)</button>
+            </div>
+          </div>
+
+          <div class="grid-2 mb-20">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>Subject-wise Score Distribution</div>
+              <div class="card-sub">Average assignment, quiz and exam scores by subject</div>
+              <div class="chart-wrap lg"><canvas id="chart-quiz-bar"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>AI Weak Topic Diagnostics (Module 4.6.7)</div>
+              <div class="card-sub">AI-flagged concepts requiring personalized remediation</div>
+              <div id="weak-topic-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quizzes & Examinations Module (Module 4.6.5) -->
+        <section id="page-quizzes-exams" class="page-section">
+          <div class="card mb-20">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Quiz & Continuous Assessment Scores (Module 4.6.5)</div>
+            <div class="card-sub">Continuous assessment quizzes with subject-wise class average comparison</div>
+            <div class="table-responsive" style="margin-top:14px;">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Quiz ID</th><th>Course</th><th>Topic Tested</th><th>Date</th><th>Score</th><th>Class Avg</th><th>Performance</th></tr>
+                </thead>
+                <tbody id="student-quizzes-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Semester Examination & Lab Practical Results</div>
+            <div class="card-sub">Official examination records, grades, and marks obtained</div>
+            <div class="table-responsive" style="margin-top:14px;">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Course Code</th><th>Subject</th><th>Exam Type</th><th>Max Marks</th><th>Marks Obtained</th><th>Percentage</th><th>Grade</th><th>Status</th></tr>
+                </thead>
+                <tbody id="student-exams-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Assignments Page -->
+        <section id="page-assignments" class="page-section">
+          <div class="card mb-20">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+              <div>
+                <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/></svg>Assignment & Coursework Management (Module 4.6.4)</div>
+                <div class="card-sub" style="margin-bottom: 0;">Assignment tracking, submissions, grades, late status & AI practice tasks</div>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <button type="button" id="btn-open-gen-assignment-modal" class="btn-primary" style="width: auto; padding: 8px 16px; font-size: 0.82rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                  <span>✨ Generate AI Practice Assignment</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div style="display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;">
+              <select id="filter-assignment-subject" style="background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 7px 12px; color: var(--text-primary); font-family: var(--font-sans); font-size: 0.8rem; outline: none;">
+                <option value="all">📚 All Subjects (12)</option>
+                <option value="Data Structures">💻 Data Structures</option>
+                <option value="Web Technology">🌐 Web Technology</option>
+                <option value="Machine Learning">🤖 Machine Learning</option>
+                <option value="DBMS">🗄️ DBMS</option>
+                <option value="Software Engg.">📐 Software Engineering</option>
+                <option value="Computer Networks">📡 Computer Networks</option>
+              </select>
+
+              <select id="filter-assignment-status" style="background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 7px 12px; color: var(--text-primary); font-family: var(--font-sans); font-size: 0.8rem; outline: none;">
+                <option value="all">⚡ All Statuses</option>
+                <option value="pending">⏳ Pending</option>
+                <option value="submitted">✅ Submitted</option>
+                <option value="overdue">⚠️ Overdue</option>
+              </select>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Assignment Title & Details</th><th>Course</th><th>Due Date</th><th>Status</th><th>Grade</th><th>Score</th><th>Action</th></tr>
+                </thead>
+                <tbody id="assignment-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- AI Insights Page -->
+        <section id="page-ai-insights" class="page-section">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>AI-Generated Personalized Study Plan (Module 4.6.7)</div>
+              <div class="card-sub">Daily targeted study blocks tailored to remediate weak topics</div>
+              <div class="study-plan-list" id="study-plan-list"></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Curriculum & Course Completion</div>
+              <div class="card-sub">Enrolled syllabus progress & credit readiness</div>
+              <div class="chart-wrap"><canvas id="chart-ai-donut"></canvas></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Placement-Readiness Tracking (Section 4.17) -->
+        <section id="page-placement" class="page-section">
+          <div class="placement-hero-card">
+            <div>
+              <div style="font-size:1.3rem; font-weight:900; color:var(--text-primary); display:flex; align-items:center; gap:10px;">
+                <span>🎯</span> Placement-Readiness Tracking (Section 4.17)
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:6px; max-width:600px;">
+                AI evaluates your cumulative coding proficiency, DSA mastery, aptitude scores, and mock interview performance against recruitment benchmarks.
+              </p>
+            </div>
+            <div class="placement-score-circle">
+              <span class="placement-circle-num" id="placement-score-val">86%</span>
+              <span class="placement-circle-lbl">Ready</span>
+            </div>
+          </div>
+
+          <div class="grid-2 mb-20">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>Competency Radar Breakdown</div>
+              <div class="card-sub">Your skill score vs Top Tier recruitment cutoff</div>
+              <div class="chart-wrap lg"><canvas id="chart-placement-radar"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Key Placement Readiness Milestones</div>
+              <div class="card-sub">Coding practice, aptitude testing & mock interview stats</div>
+              <div id="placement-milestones-list" style="margin-top:14px;"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Student AI Assistant Chatbot Page -->
+        <section id="page-ai-assistant" class="page-section">
+          <div class="card" style="max-width:800px; margin:0 auto;">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>AI Study & Academic Assistant</div>
+            <div class="card-sub">Ask questions about your GPA prediction, attendance shortage, study plan, or exam tips</div>
+            <div style="height:380px; overflow-y:auto; border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px; margin:16px 0; background:rgba(0,0,0,0.25);" id="page-chat-messages"></div>
+            <div style="display:flex; gap:10px;">
+              <input type="text" id="page-chat-input" class="calc-input" placeholder="e.g., How can I improve my Software Engineering score?" />
+              <button class="btn-primary" id="page-chat-send" style="width:auto; padding:0 24px;">Send</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gamification Achievements -->
+        <section id="page-gamification" class="page-section">
+          <div class="card mb-20">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>Academic Milestone Progress — Level 12: Code Warrior</div>
+            <div class="card-sub">2,840 / 3,200 XP earned to reach Level 13 (Dean's Scholar)</div>
+            <div style="background:rgba(255,255,255,0.06); height:12px; border-radius:6px; overflow:hidden; margin:16px 0;">
+              <div style="width:88%; height:100%; background:linear-gradient(90deg, var(--indigo), var(--emerald));"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/></svg>Earned Badges & Honors</div>
+            <div id="badges-grid" class="badges-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:14px; margin-top:14px;"></div>
+          </div>
+        </section>
+
+      </div>
+      <!-- END STUDENT PAGES -->
+
+      <!-- ───────────────────────────────────────────────
+           2. TEACHER PAGES
+           ─────────────────────────────────────────────── -->
+      <div id="pages-teacher" style="display:none;">
+
+        <!-- Teacher Overview -->
+        <section id="page-t-overview" class="page-section active">
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="stat-icon indigo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="stat-t-students">65</div>
+                <div class="stat-label">Total Students (Class 6CE)</div>
+                <div class="stat-trend up">↑ 100% Enrollment Verified</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon cyan">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="stat-t-avg">76.4%</div>
+                <div class="stat-label">Class Average Score</div>
+                <div class="stat-trend up">↑ +2.1% improvement from last test</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon emerald">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2c.57.14.76.69.76 1.25V13z"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="stat-t-pass">89%</div>
+                <div class="stat-label">Predicted Pass Rate</div>
+                <div class="stat-trend up">Above department average</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon rose">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="stat-t-atrisk">8</div>
+                <div class="stat-label">At-Risk Students</div>
+                <div class="stat-trend down">⚠ Requires intervention notice</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2 mb-20">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>Score vs Attendance Distribution</div>
+              <div class="card-sub">Top students comparison — Marks vs Attendance %</div>
+              <div class="chart-wrap lg"><canvas id="chart-t-scores"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Class Performance Trajectory</div>
+              <div class="card-sub">6-week moving average and pass percentage</div>
+              <div class="chart-wrap lg"><canvas id="chart-t-class"></canvas></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>Topic Engagement & Comprehension (Module 4.6.6)</div>
+            <div class="card-sub">Topics below 65% engagement require classroom revision</div>
+            <div id="engagement-list" style="margin-top:14px;"></div>
+          </div>
+        </section>
+
+        <!-- Teacher Student Rankings -->
+        <section id="page-t-students" class="page-section">
+          <div class="card">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Class Performance Rankings & Student Analytics</div>
+            <div class="card-sub">Ranked list of students with scores, attendance, and coursework metrics</div>
+            <div class="table-responsive" style="margin-top:14px;">
+              <table class="data-table">
+                <thead><tr><th>Rank</th><th>Student Name</th><th>Roll No</th><th>Score %</th><th>Attendance %</th><th>Coursework</th><th>Trend</th><th>Status</th></tr></thead>
+                <tbody id="teacher-rank-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Teacher Quiz & Exam Analysis (Module 4.6.5) -->
+        <section id="page-t-quizzes" class="page-section">
+          <div class="grid-2 mb-20">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>High-Performing vs Low-Performing Cohort</div>
+              <div class="card-sub">Students grouped by score threshold (>85% vs <60%)</div>
+              <div class="chart-wrap lg"><canvas id="chart-t-cohort"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>Frequently Weak Topics Identified</div>
+              <div class="card-sub">Aggregated error frequency across continuous assessments</div>
+              <div id="teacher-weak-topics-summary" style="margin-top:14px;"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Teacher At-Risk Monitor & Interactive Simulator (Module 4.6.8) -->
+        <section id="page-t-atrisk" class="page-section">
+          <div class="card mb-20">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Early Warning Monitor — Identified At-Risk Students (Module 4.6.8)</div>
+            <div class="card-sub">AI-flagged students combining low attendance, low assignments, low quizzes, and low exam marks</div>
+            <div class="table-responsive" style="margin-top:14px;">
+              <table class="data-table">
+                <thead><tr><th>Student Name</th><th>Roll No</th><th>Attendance</th><th>Assignment %</th><th>Quiz Avg</th><th>Exam Score</th><th>Risk Level</th><th>Action</th></tr></thead>
+                <tbody id="at-risk-table"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Interactive Early Warning Risk Simulator -->
+          <div class="risk-simulator-box">
+            <div class="card-title" style="color:var(--rose);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              Interactive Early Warning Risk Engine Simulator (Section 4.6.8)
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); margin:4px 0 16px;">
+              Adjust the academic parameters below to simulate the AI Risk Analysis pipeline and generate automated warning notices:
+            </p>
+
+            <div class="grid-2">
+              <div>
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <span>1. Attendance Rate</span>
+                    <span class="slider-val" id="val-sim-att">62%</span>
+                  </div>
+                  <input type="range" id="sim-att" class="risk-slider" min="0" max="100" value="62" />
+                </div>
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <span>2. Assignment Completion</span>
+                    <span class="slider-val" id="val-sim-asgn">40%</span>
+                  </div>
+                  <input type="range" id="sim-asgn" class="risk-slider" min="0" max="100" value="40" />
+                </div>
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <span>3. Quiz Average</span>
+                    <span class="slider-val" id="val-sim-quiz">48%</span>
+                  </div>
+                  <input type="range" id="sim-quiz" class="risk-slider" min="0" max="100" value="48" />
+                </div>
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <span>4. Examination Score</span>
+                    <span class="slider-val" id="val-sim-exam">50%</span>
+                  </div>
+                  <input type="range" id="sim-exam" class="risk-slider" min="0" max="100" value="50" />
+                </div>
+              </div>
+
+              <div>
+                <div class="risk-gauge-wrap">
+                  <div class="risk-gauge-score" id="sim-risk-score" style="color:var(--rose);">82 / 100</div>
+                  <div class="risk-gauge-label" id="sim-risk-label" style="color:var(--rose);">CRITICAL AT-RISK</div>
+                  <p style="font-size:0.75rem; color:var(--text-muted); margin-top:8px;">
+                    Algorithm: 0.35 × (100 - Att) + 0.25 × (100 - Asgn) + 0.20 × (100 - Quiz) + 0.20 × (100 - Exam)
+                  </p>
+                </div>
+                <div class="risk-alert-box" id="sim-alert-box" style="background:var(--danger-bg); border:1px solid var(--danger-border); color:var(--text-primary);">
+                  <span>⚠️</span>
+                  <div id="sim-alert-text">
+                    <strong>High Urgency Notice:</strong> Student exhibits severe attendance deficit (62%) and failing quiz trends (<50%). Automated remedial coaching and parent dispatch required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Teacher Reports (8 Reports Center - Module 4.6.10) -->
+        <section id="page-t-reports" class="page-section">
+          <div class="card">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>Automated Analytical Reports Center (Module 4.6.10)</div>
+            <div class="card-sub">Generate and export all 8 official academic reports as specified in Chapter 4</div>
+            <div class="reports-grid" id="reports-cards-container"></div>
+          </div>
+        </section>
+
+      </div>
+      <!-- END TEACHER PAGES -->
+
+      <!-- ───────────────────────────────────────────────
+           3. ADMINISTRATOR PAGES (Section 4.1, 4.2.1, 4.6.1, 4.14)
+           ─────────────────────────────────────────────── -->
+      <div id="pages-admin" style="display:none;">
+
+        <!-- Institutional Overview -->
+        <section id="page-a-overview" class="page-section active">
+          <div class="stat-grid">
+            <div class="stat-card clickable-stat" id="admin-stat-students" data-page="a-departments" role="button" tabindex="0" title="Click to view Department Analytics & Student Distribution">
+              <div class="stat-icon indigo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="stat-content-wrap">
+                <div class="stat-val" id="admin-stat-val-students">1,420</div>
+                <div class="stat-label">Total Enrolled Students</div>
+                <div class="stat-trend up">↑ 5 Engineering Branches</div>
+              </div>
+              <div class="stat-arrow-hint" title="Open Department Analytics">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="stat-card clickable-stat" id="admin-stat-faculty" data-page="a-users" role="button" tabindex="0" title="Click to view Faculty Members & User Management">
+              <div class="stat-icon cyan">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div class="stat-content-wrap">
+                <div class="stat-val" id="admin-stat-val-faculty">84</div>
+                <div class="stat-label">Faculty Members</div>
+                <div class="stat-trend up">Mentor ratio 1:17</div>
+              </div>
+              <div class="stat-arrow-hint" title="Open User Management">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="stat-card clickable-stat" id="admin-stat-passrate" data-page="a-departments" role="button" tabindex="0" title="Click to view Overall College Pass Rate & Academic Scorecard">
+              <div class="stat-icon emerald">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <div class="stat-content-wrap">
+                <div class="stat-val" id="admin-stat-val-passrate">91.4%</div>
+                <div class="stat-label">Overall College Pass Rate</div>
+                <div class="stat-trend up">↑ +3.2% from 2025 cycle</div>
+              </div>
+              <div class="stat-arrow-hint" title="Open Pass Rate Analytics">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="stat-card clickable-stat" id="admin-stat-uptime" data-page="a-logs" role="button" tabindex="0" title="Click to view System Uptime & Security Logs">
+              <div class="stat-icon purple">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              </div>
+              <div class="stat-content-wrap">
+                <div class="stat-val" id="admin-stat-val-uptime">99.98%</div>
+                <div class="stat-label">System Uptime & Health</div>
+                <div class="stat-trend up">Zero Data Loss Logged</div>
+              </div>
+              <div class="stat-arrow-hint" title="Open Security & Audit Logs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Admin Quick Action Toolbar -->
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn-primary" id="btn-admin-add-user-quick" style="width:auto; font-size:0.80rem; padding:8px 16px;" type="button">+ Add New User</button>
+              <button class="btn-secondary" id="btn-admin-gen-report" style="width:auto; font-size:0.80rem; padding:8px 16px;" type="button">📄 Institutional Report</button>
+              <button class="btn-secondary" id="btn-admin-nav-logs" style="width:auto; font-size:0.80rem; padding:8px 16px;" type="button">🛡️ View Audit Trail</button>
+            </div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Academic Year 2026 &bull; GTU Affiliated &bull; TDEC Surat</div>
+          </div>
+
+          <div class="grid-2 mb-20">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>Departmental Performance & Attendance Comparison</div>
+              <div class="card-sub">Pass rate % and average attendance across 5 engineering disciplines</div>
+              <div class="chart-wrap lg"><canvas id="chart-admin-depts"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Enrollment Share by Department</div>
+              <div class="card-sub">Student distribution at Tapi Diploma Engineering College</div>
+              <div class="chart-wrap lg"><canvas id="chart-admin-enrollment"></canvas></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- User Management & RBAC Module (Module 4.6.1 & Section 4.14) -->
+        <section id="page-a-users" class="page-section">
+          <div class="card mb-20">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>User Management Module (Section 4.6.1)</div>
+                <div class="card-sub">Manage student, teacher, and administrator credentials & permissions</div>
+              </div>
+              <button class="btn-primary" id="btn-open-add-user-modal" style="width:auto; padding:8px 16px; font-size:0.82rem;">
+                + Add New User
+              </button>
+            </div>
+
+            <!-- Role Filter Pills & Search -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06);">
+              <div class="role-filter-pills" style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="btn-secondary active" id="btn-user-filter-all" style="width:auto; font-size:0.75rem; padding:6px 14px;" type="button">All Users (6)</button>
+                <button class="btn-secondary" id="btn-user-filter-faculty" style="width:auto; font-size:0.75rem; padding:6px 14px;" type="button">Faculty / Teachers (2)</button>
+                <button class="btn-secondary" id="btn-user-filter-student" style="width:auto; font-size:0.75rem; padding:6px 14px;" type="button">Students (3)</button>
+                <button class="btn-secondary" id="btn-user-filter-admin" style="width:auto; font-size:0.75rem; padding:6px 14px;" type="button">Administrators (1)</button>
+              </div>
+              <input type="text" id="admin-user-search-input" class="calc-input" style="max-width:260px; padding:6px 12px; font-size:0.78rem;" placeholder="🔍 Search name, email, or dept..." />
+            </div>
+
+            <div class="table-responsive" style="margin-top:14px;">
+              <table class="data-table">
+                <thead><tr><th>User ID</th><th>Name</th><th>Email</th><th>Role</th><th>Department</th><th>Status</th><th>Last Login</th><th>Action</th></tr></thead>
+                <tbody id="admin-users-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- RBAC Permission Matrix Table (Section 4.14) -->
+          <div class="card">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Role-Based Access Control (RBAC) Matrix (Section 4.14)</div>
+            <div class="card-sub">Strict access boundaries implemented across presentation and API layers</div>
+            <div class="table-responsive" style="margin-top:14px;">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Role</th><th>View Own Data</th><th>Submit Coursework</th><th>Take Quizzes</th><th>Class Analytics</th><th>Grade Coursework</th><th>User Mgmt</th><th>Reports Scope</th></tr>
+                </thead>
+                <tbody id="admin-rbac-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Department Analytics -->
+        <section id="page-a-departments" class="page-section">
+          <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-4 7 4v12"/></svg>Departmental Academic Scorecard</div>
+                <div class="card-sub">Comparison across Computer, IT, AI&DS, E&C, and Mechanical branches</div>
+              </div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn-secondary" id="btn-export-depts-csv" style="width:auto; font-size:0.78rem; padding:6px 14px;" type="button">📥 Export CSV</button>
+                <button class="btn-primary" id="btn-dept-report-modal" style="width:auto; font-size:0.78rem; padding:6px 14px;" type="button">📄 Institutional Report</button>
+              </div>
+            </div>
+            <div class="table-responsive" style="margin-top:14px;">
+              <table class="data-table">
+                <thead><tr><th>Department</th><th>Code</th><th>Students</th><th>Faculty</th><th>Pass Rate %</th><th>Avg Attendance %</th><th>At-Risk Count</th><th>Avg CGPA</th></tr></thead>
+                <tbody id="admin-depts-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- System Security & Audit Logs (Section 4.14) -->
+        <section id="page-a-logs" class="page-section">
+          <!-- Server & Infrastructure Health Status Cards -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:20px;">
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:12px 16px;">
+              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">API Server Latency</div>
+              <div style="font-size:1.35rem; font-weight:800; color:var(--emerald); margin-top:2px;">14ms <span style="font-size:0.72rem; color:var(--emerald);">● Optimal</span></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:12px 16px;">
+              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Database Schema (MySQL)</div>
+              <div style="font-size:1.35rem; font-weight:800; color:var(--indigo); margin-top:2px;">13 Tables <span style="font-size:0.72rem; color:var(--emerald);">● Synced</span></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:12px 16px;">
+              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">System Availability SLA</div>
+              <div style="font-size:1.35rem; font-weight:800; color:var(--cyan); margin-top:2px;">99.98% <span style="font-size:0.72rem; color:var(--cyan);">● 0 Outages</span></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:12px 16px;">
+              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Daily Automated Backup</div>
+              <div style="font-size:1.35rem; font-weight:800; color:var(--purple); margin-top:2px;">Completed <span style="font-size:0.72rem; color:var(--purple);">● 03:00 AM</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>System Security & Audit Trail (Section 4.14)</div>
+                <div class="card-sub">Real-time authentication records, backup logs, and database access events</div>
+              </div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn-secondary" id="btn-refresh-admin-logs" style="width:auto; font-size:0.78rem; padding:6px 14px;" type="button">🔄 Refresh Logs</button>
+                <button class="btn-primary" id="btn-export-admin-logs" style="width:auto; font-size:0.78rem; padding:6px 14px;" type="button">📥 Export Audit Trail</button>
+              </div>
+            </div>
+            <div id="admin-logs-list" style="margin-top:14px;"></div>
+          </div>
+        </section>
+
+      </div>
+      <!-- END ADMINISTRATOR PAGES -->
+
+      <!-- ───────────────────────────────────────────────
+           4. SYSTEM DESIGN PAGES (Chapter 4)
+           ─────────────────────────────────────────────── -->
+      <div id="pages-arch" style="display:none;">
+
+        <!-- 4-Layer Architecture (Section 4.2) -->
+        <section id="page-arch-overview" class="page-section active">
+          <div class="arch-hero">
+            <h2 style="font-size:1.3rem; font-weight:800; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+              <span>🏗️</span> 4-Layer System Architecture (Chapter 4.2)
+            </h2>
+            <p style="color:var(--text-secondary); font-size:0.85rem; line-height:1.5;">
+              The proposed system follows a modular layered architecture separating Presentation, Application Logic, AI/ML Analytics, and Database Storage for Tapi Diploma Engineering College.
+            </p>
+          </div>
+
+          <div class="arch-layer-grid">
+            <div class="arch-layer-card">
+              <div class="arch-layer-num">1</div>
+              <div class="arch-layer-title" style="color:var(--cyan);">Presentation Layer</div>
+              <div class="arch-layer-desc">React.js, HTML5, Vanilla CSS & Chart.js. Responsive dashboards for Students, Teachers & Administrators.</div>
+            </div>
+            <div class="arch-layer-card">
+              <div class="arch-layer-num">2</div>
+              <div class="arch-layer-title" style="color:var(--indigo);">Application Layer</div>
+              <div class="arch-layer-desc">Node.js / Python backend. Manages business logic, user authentication, RBAC, and report aggregation.</div>
+            </div>
+            <div class="arch-layer-card">
+              <div class="arch-layer-num">3</div>
+              <div class="arch-layer-title" style="color:var(--purple);">AI / ML Layer</div>
+              <div class="arch-layer-desc">Python & Scikit-Learn. Feature selection, performance prediction, risk detection, and study planning.</div>
+            </div>
+            <div class="arch-layer-card">
+              <div class="arch-layer-num">4</div>
+              <div class="arch-layer-title" style="color:var(--emerald);">Database Layer</div>
+              <div class="arch-layer-desc">MySQL Relational DB with 13 structured tables maintaining academic data integrity.</div>
+            </div>
+          </div>
+
+          <div class="card-grid-2">
+            <div class="card">
+              <div class="card-title">✨ Highlights of System Design (Section 4.1)</div>
+              <ul style="margin-top:12px; font-size:0.85rem; line-height:1.7; color:var(--text-secondary);">
+                <li>🔹 Centralized architecture for student academic data storage</li>
+                <li>🔹 Dedicated dashboards for Students, Teachers, and Administrators</li>
+                <li>🔹 Automated Attendance formula: <code>(Attended / Total) × 100</code></li>
+                <li>🔹 Python AI/ML models for GPA prediction and personalized recommendations</li>
+                <li>🔹 Early identification of academically at-risk students with multi-factor risk flow</li>
+                <li>🔹 Graphical visualization across 8 automated exportable academic reports</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="card-title">🖥️ Hardware & Software Requirements (Section 4.15)</div>
+              <div style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6; margin-top:10px;">
+                <p><strong>Hardware:</strong> Computer or laptop with Min 4 GB RAM, 20 GB storage, standard processor, and internet connectivity.</p>
+                <p style="margin-top:6px;"><strong>Software Stack:</strong> React.js, HTML, CSS, JavaScript front-end; Python & Node.js backend; MySQL database; VS Code editor; Chrome/Edge/Firefox browser.</p>
+                <p style="margin-top:6px;"><strong>OS Support:</strong> Windows / Linux compatible.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MySQL Database Design (13 Tables - Section 4.5) -->
+        <section id="page-arch-db" class="page-section">
+          <div class="card mb-20">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>MySQL Database Schema Explorer (13 Tables - Section 4.5)</div>
+            <div class="card-sub">Click any table below to inspect its schema, column types, primary/foreign keys, and sample records</div>
+            
+            <div class="db-tabs-scroll" id="db-tables-pill-container" style="margin-top:14px;"></div>
+
+            <!-- Active Table Schema Display -->
+            <div id="active-table-details-card" style="margin-top:14px;"></div>
+          </div>
+
+          <!-- Interactive SQL Query Runner -->
+          <div class="sql-runner-card">
+            <div class="card-title" style="color:var(--cyan);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+              Interactive MySQL SQL Query Runner (Simulated Database Engine)
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin:10px 0 6px;">
+              <span style="font-size:0.75rem; color:var(--text-secondary);">Select a pre-built query or write custom SQL:</span>
+              <select id="sample-sql-select" style="background:#050811; border:1px solid var(--border); color:var(--text-primary); font-size:0.75rem; padding:4px 8px; border-radius:4px; outline:none;">
+                <option value="0">1. At-Risk Students with Attendance < 75%</option>
+                <option value="1">2. Top Performing Students (CGPA > 8.5)</option>
+                <option value="2">3. Quiz Scores vs Course Details</option>
+                <option value="3">4. High-Priority AI Recommendations</option>
+              </select>
+            </div>
+            <textarea id="sql-query-input" class="sql-editor-input"></textarea>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+              <span style="font-size:0.72rem; color:var(--text-muted);" id="sql-execution-stats">Execution: 0.024ms • Connection: MySQL Local Pool</span>
+              <button class="btn-primary" id="btn-run-sql" style="width:auto; padding:8px 20px; font-size:0.82rem;">Execute SQL Query</button>
+            </div>
+            <div style="overflow-x:auto; margin-top:12px;" id="sql-results-container"></div>
+          </div>
+        </section>
+
+        <!-- AI/ML Data Flow Pipeline (Section 4.4 & 4.7) -->
+        <section id="page-arch-flow" class="page-section">
+          <div class="card mb-20">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>AI & Machine Learning Processing Flow (Section 4.4 & 4.12)</div>
+            <div class="card-sub">7-Stage systematic machine learning lifecycle from data collection to dashboard alerts</div>
+            <div style="margin-top:16px; padding:20px; background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:var(--radius-sm); text-align:center;">
+              <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px; font-size:0.82rem; font-weight:700;">
+                <div style="padding:10px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px;">1. Academic Data</div>
+                <div style="color:var(--indigo);">➔</div>
+                <div style="padding:10px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px;">2. Data Collection</div>
+                <div style="color:var(--cyan);">➔</div>
+                <div style="padding:10px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px;">3. Data Cleaning</div>
+                <div style="color:var(--purple);">➔</div>
+                <div style="padding:10px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px;">4. Feature Selection</div>
+                <div style="color:var(--emerald);">➔</div>
+                <div style="padding:10px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px;">5. AI/ML Analysis</div>
+                <div style="color:var(--amber);">➔</div>
+                <div style="padding:10px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px;">6. Risk Prediction</div>
+                <div style="color:var(--rose);">➔</div>
+                <div style="padding:10px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px;">7. Alerts / Dashboard</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Agile Development Methodology (Section 4.8 & 4.11) -->
+        <section id="page-arch-agile" class="page-section">
+          <div class="card">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>Agile Software Development Lifecycle (Section 4.8 & 4.11)</div>
+            <div class="card-sub">Iterative sprint cycle covering 9 core development activities</div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px; margin-top:16px;">
+              <div class="card" style="padding:16px; background:rgba(255,255,255,0.02);">
+                <div style="font-weight:800; color:var(--indigo); margin-bottom:4px;">Phase 1: Requirement Analysis</div>
+                <p style="font-size:0.78rem; color:var(--text-secondary);">Student, teacher, and institutional needs assessment (Section 4.9).</p>
+              </div>
+              <div class="card" style="padding:16px; background:rgba(255,255,255,0.02);">
+                <div style="font-weight:800; color:var(--cyan); margin-bottom:4px;">Phase 2: System Architecture</div>
+                <p style="font-size:0.78rem; color:var(--text-secondary);">Designing 4-layer architecture, UI wireframes, and data flow (Section 4.10).</p>
+              </div>
+              <div class="card" style="padding:16px; background:rgba(255,255,255,0.02);">
+                <div style="font-weight:800; color:var(--purple); margin-bottom:4px;">Phase 3: Database Implementation</div>
+                <p style="font-size:0.78rem; color:var(--text-secondary);">Building MySQL relational schema across all 13 structured tables (Section 4.5).</p>
+              </div>
+              <div class="card" style="padding:16px; background:rgba(255,255,255,0.02);">
+                <div style="font-weight:800; color:var(--emerald); margin-bottom:4px;">Phase 4: AI/ML Model Training</div>
+                <p style="font-size:0.78rem; color:var(--text-secondary);">Feature preprocessing, student risk regression, and recommendation engine (Section 4.12).</p>
+              </div>
+              <div class="card" style="padding:16px; background:rgba(255,255,255,0.02);">
+                <div style="font-weight:800; color:var(--amber); margin-bottom:4px;">Phase 5: 7-Stage Testing & UAT</div>
+                <p style="font-size:0.78rem; color:var(--text-secondary);">Unit, integration, functional, database, and user acceptance testing (Section 4.13).</p>
+              </div>
+              <div class="card" style="padding:16px; background:rgba(255,255,255,0.02);">
+                <div style="font-weight:800; color:var(--rose); margin-bottom:4px;">Phase 6: Deployment & Maintenance</div>
+                <p style="font-size:0.78rem; color:var(--text-secondary);">Deployment on institutional hardware with automated backup routines (Section 5.6).</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7-Stage Testing Suite (Section 4.13) -->
+        <section id="page-arch-testing" class="page-section">
+          <div class="test-suite-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <div class="card-title" style="color:var(--emerald);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>7-Stage Testing Methodology Suite (Section 4.13)</div>
+                <div class="card-sub">Automated verification of Unit, Integration, Functional, Database, UI, System & UAT Tests</div>
+              </div>
+              <button class="btn-primary" id="btn-run-tests" style="width:auto; padding:8px 20px; font-size:0.82rem;">
+                ▶ Run Automated Test Suite
+              </button>
+            </div>
+
+            <div style="margin-top:16px;" id="testing-suite-container"></div>
+          </div>
+        </section>
+
+      </div>
+      <!-- END SYSTEM DESIGN PAGES -->
+
+      <!-- ───────────────────────────────────────────────
+           5. BUDGET & FEASIBILITY PAGES (Chapter 5)
+           ─────────────────────────────────────────────── -->
+      <div id="pages-budget" style="display:none;">
+
+        <!-- Cost Breakdown (Section 5.2 - 5.4) -->
+        <section id="page-b-costs" class="page-section active">
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="stat-icon emerald">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" style="color:var(--emerald);">₹0</div>
+                <div class="stat-label">Total Additional Cost (Table 5.4)</div>
+                <div class="stat-trend up">100% Free & Open-Source Stack</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon indigo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div>
+                <div class="stat-val">₹0</div>
+                <div class="stat-label">Hardware Addition (Table 5.2)</div>
+                <div class="stat-trend up">Existing Institutional Computers</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              </div>
+              <div>
+                <div class="stat-val">₹0</div>
+                <div class="stat-label">Software Licenses (Table 5.3)</div>
+                <div class="stat-trend up">VS Code + React + MySQL</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon cyan">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div>
+                <div class="stat-val">₹5,75,000</div>
+                <div class="stat-label">Estimated Annual Savings</div>
+                <div class="stat-trend up">vs Commercial Proprietary LMS</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2 mb-20">
+            <!-- Hardware Cost Table (Table 5.2) -->
+            <div class="card">
+              <div class="card-title">💻 Table 5.2: Hardware Cost</div>
+              <div class="card-sub">Existing hardware utilized; no additional procurement needed</div>
+              <table class="data-table" style="margin-top:12px;">
+                <thead><tr><th>Sr. No.</th><th>Component</th><th>Quantity</th><th>Unit Cost</th><th>Total</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Laptop / Computer</td><td>1</td><td>Existing</td><td>Existing</td></tr>
+                  <tr><td>2</td><td>Internet Connection</td><td>1</td><td>Existing</td><td>Existing</td></tr>
+                  <tr style="font-weight:800; background:rgba(16,185,129,0.06);"><td colspan="4">Total Additional Hardware Cost</td><td style="color:var(--emerald);">₹0</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Total Project Cost (Table 5.4) -->
+            <div class="card">
+              <div class="card-title">💰 Table 5.4: Total Project Cost</div>
+              <div class="card-sub">Complete financial expenditure overview</div>
+              <table class="data-table" style="margin-top:12px;">
+                <thead><tr><th>Category</th><th>Cost</th></tr></thead>
+                <tbody>
+                  <tr><td>Hardware</td><td>₹0 additional cost</td></tr>
+                  <tr><td>Software / Services</td><td>₹0 for free/open-source tools</td></tr>
+                  <tr><td>Miscellaneous</td><td>₹0</td></tr>
+                  <tr style="font-weight:900; background:rgba(99,102,241,0.08); font-size:0.95rem;"><td>Grand Total</td><td style="color:var(--emerald);">₹0 additional project cost</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Software / Service Cost Table (Table 5.3) -->
+          <div class="card">
+            <div class="card-title">📦 Table 5.3: Software & Service Cost Breakdown</div>
+            <div class="card-sub">All technologies chosen are free, open-source, or community-licensed</div>
+            <div class="table-responsive" style="margin-top:12px;">
+              <table class="data-table">
+                <thead><tr><th>Sr. No.</th><th>Software / Service</th><th>Purpose</th><th>Cost</th></tr></thead>
+                <tbody id="chapter5-software-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical & Economic Feasibility (Section 5.5 & 5.6) -->
+        <section id="page-b-feasibility" class="page-section">
+          <div class="grid-2 mb-20">
+            <div class="card">
+              <div class="card-title">⚙️ Technical Feasibility Evaluation (Section 5.5)</div>
+              <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7; margin-top:12px;">
+                <p><strong>• Hardware Feasibility:</strong> Standard computer or laptop is sufficient. No dedicated high-performance GPU required for inference.</p>
+                <p style="margin-top:8px;"><strong>• Software Feasibility:</strong> Built on industry-standard React.js, Node.js, Python, and MySQL. High cross-platform compatibility.</p>
+                <p style="margin-top:8px;"><strong>• Skills Feasibility:</strong> Standard web development, basic data analysis, and relational SQL skills easily available within diploma faculty and students.</p>
+                <p style="margin-top:8px;"><strong>• Infrastructure Feasibility:</strong> Readily runs on existing college computer lab networks without server room alterations.</p>
+                <div style="margin-top:14px; padding:10px 14px; background:var(--success-bg); border:1px solid var(--success-border); border-radius:6px; color:var(--emerald); font-weight:700;">
+                  ✓ Conclusion: Project is 100% technically feasible.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">📈 Economic Feasibility & ROI (Section 5.6)</div>
+              <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7; margin-top:12px;">
+                <p><strong>• Development Cost:</strong> Kept at ₹0 by leveraging open-source frameworks and existing college infrastructure.</p>
+                <p style="margin-top:8px;"><strong>• Maintenance Cost:</strong> No recurring annual vendor license renewals; maintenance performed in-house.</p>
+                <p style="margin-top:8px;"><strong>• Direct Cost Savings:</strong> Eliminates physical paper grade sheets (~₹45,000/yr savings) and reduces manual data entry labor.</p>
+                <p style="margin-top:8px;"><strong>• Educational Benefits:</strong> Early risk notification prevents student dropouts and improves semester pass rates.</p>
+                <div style="margin-top:14px; padding:10px 14px; background:var(--success-bg); border:1px solid var(--success-border); border-radius:6px; color:var(--emerald); font-weight:700;">
+                  ✓ Conclusion: High economic feasibility with immediate ROI.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Operational Feasibility (Section 5.7) -->
+        <section id="page-b-operational" class="page-section">
+          <div class="card">
+            <div class="card-title">👥 Operational Feasibility & User Workflows (Section 5.7)</div>
+            <div class="card-sub">Validates whether students, teachers, and administrators can easily adopt the system</div>
+            <div class="grid-2" style="margin-top:16px;">
+              <div class="card" style="background:rgba(255,255,255,0.02);">
+                <div style="font-weight:800; color:var(--cyan); margin-bottom:8px;">Student Workflows</div>
+                <ul style="font-size:0.82rem; color:var(--text-secondary); line-height:1.7;">
+                  <li>✓ View real-time academic performance & GPA prediction</li>
+                  <li>✓ Check subject-wise attendance and 75% shortage alert</li>
+                  <li>✓ Access quiz and semester exam score records</li>
+                  <li>✓ Follow personalized AI daily study plans</li>
+                </ul>
+              </div>
+              <div class="card" style="background:rgba(255,255,255,0.02);">
+                <div style="font-weight:800; color:var(--indigo); margin-bottom:8px;">Teacher Workflows</div>
+                <ul style="font-size:0.82rem; color:var(--text-secondary); line-height:1.7;">
+                  <li>✓ Monitor class performance rankings and averages</li>
+                  <li>✓ Identify academically at-risk learners proactively</li>
+                  <li>✓ Detect weak topics across assignment and quiz questions</li>
+                  <li>✓ Export 8 automated analytical reports with one click</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Safety & Environmental Considerations (Section 5.8 & 5.9) -->
+        <section id="page-b-safety" class="page-section">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-title">🛡️ Safety & Security Considerations (Section 5.8)</div>
+              <div style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-top:12px;">
+                <p><strong>• Data Security:</strong> Student data stored securely with controlled database privileges.</p>
+                <p style="margin-top:6px;"><strong>• Authentication:</strong> Role-based access control (RBAC) separating Student, Teacher, and Administrator accounts.</p>
+                <p style="margin-top:6px;"><strong>• Privacy:</strong> Personal academic records kept confidential; unauthorized viewing prevented.</p>
+                <p style="margin-top:6px;"><strong>• Secure Handling:</strong> Sanitized inputs, prepared statements, and regular database backup dumps.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">🌱 Environmental & Social Considerations (Section 5.9)</div>
+              <div style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-top:12px;">
+                <p><strong>• E-Waste Reduction:</strong> Operates on existing computers without purchasing redundant hardware.</p>
+                <p style="margin-top:6px;"><strong>• Energy Efficiency:</strong> Lightweight client-side architecture minimizes power draw.</p>
+                <p style="margin-top:6px;"><strong>• Digital Inclusion:</strong> Responsive, mobile-friendly design ensures accessibility on affordable devices.</p>
+                <p style="margin-top:6px;"><strong>• Social Impact:</strong> Assists struggling students with targeted guidance and prevents academic failure.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Official Feasibility Certificate View (Chapter 5) -->
+        <section id="page-b-cert" class="page-section">
+          <div style="text-align:right; margin-bottom:12px;">
+            <button class="btn-primary" onclick="window.print()" style="width:auto; padding:8px 20px;">🖨️ Print Feasibility Certificate</button>
+          </div>
+          <div class="cert-container">
+            <div class="cert-header">
+              <div style="font-size:0.85rem; font-weight:800; letter-spacing:1px; color:#1e3a8a; margin-bottom:4px;">TAPI DIPLOMA ENGINEERING COLLEGE, SURAT</div>
+              <div class="cert-title">PROJECT FEASIBILITY CLEARANCE CERTIFICATE</div>
+              <div class="cert-sub">Under GTU Academic Project Guidelines • Chapter 5 Budget & Feasibility Analysis</div>
+            </div>
+            <div class="cert-body">
+              <p>This is to certify that the project entitled <strong>"Learning Analytics Dashboard (LearnIQ)"</strong> developed by <strong>Saksham Patel (Enr: 21CE011)</strong> has undergone rigorous multi-dimensional feasibility evaluation under the Department of Computer Engineering.</p>
+              <table style="width:100%; border-collapse:collapse; margin:20px 0; font-size:0.88rem;">
+                <tr style="border-bottom:1px solid #d1d5db;"><td style="padding:8px; font-weight:bold;">Technical Feasibility:</td><td style="padding:8px; color:#10b981; font-weight:bold;">CLEARED (100% Feasible on Open-Source Stack)</td></tr>
+                <tr style="border-bottom:1px solid #d1d5db;"><td style="padding:8px; font-weight:bold;">Financial / Budget Feasibility:</td><td style="padding:8px; color:#10b981; font-weight:bold;">CLEARED (₹0 Additional Capital Cost)</td></tr>
+                <tr style="border-bottom:1px solid #d1d5db;"><td style="padding:8px; font-weight:bold;">Operational Feasibility:</td><td style="padding:8px; color:#10b981; font-weight:bold;">CLEARED (Role-Based for Students & Faculty)</td></tr>
+                <tr style="border-bottom:1px solid #d1d5db;"><td style="padding:8px; font-weight:bold;">Safety & Security Compliance:</td><td style="padding:8px; color:#10b981; font-weight:bold;">CLEARED (RBAC + Database Sanitization)</td></tr>
+                <tr><td style="padding:8px; font-weight:bold;">Environmental Assessment:</td><td style="padding:8px; color:#10b981; font-weight:bold;">CLEARED (Zero E-Waste, Paperless Reporting)</td></tr>
+              </table>
+              <p>The system is recommended for production deployment across Tapi Diploma Engineering College student and faculty portals.</p>
+            </div>
+            <div class="cert-stamp-row">
+              <div class="cert-sign-box">
+                <div class="cert-sign-line"></div>
+                <div class="cert-sign-title">Project Guide / Faculty Lead</div>
+                <div style="font-size:0.75rem; color:#4b5563;">Dr. Meera Nair</div>
+              </div>
+              <div class="cert-sign-box">
+                <div style="font-size:2rem; margin-bottom:4px;">🏛️</div>
+                <div style="font-size:0.72rem; font-weight:800; color:#1e3a8a;">INSTITUTIONAL SEAL</div>
+              </div>
+              <div class="cert-sign-box">
+                <div class="cert-sign-line"></div>
+                <div class="cert-sign-title">Head of Department / Principal</div>
+                <div style="font-size:0.75rem; color:#4b5563;">Dr. Arvind Kelkar</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <!-- END BUDGET & FEASIBILITY PAGES -->
+
+      <!-- ───────────────────────────────────────────────
+           6. AI TRUST GUARD PAGES
+           ─────────────────────────────────────────────── -->
+      <div id="pages-trust" style="display:none;">
+
+        <!-- Fact Check Scanner -->
+        <section id="page-h-scanner" class="page-section active">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-title">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M10 2H6"/><path d="M18 22h-4"/></svg>
+                AI-Generated Text to Audit
+              </div>
+              <div class="form-group">
+                <label>Select Demonstration Scenario</label>
+                <div class="playground-scenarios">
+                  <button class="scenario-card" data-scenario="vanceBio" type="button">
+                    <span>Quantum Bio</span>
+                    <span class="cat">Severe Risk</span>
+                  </button>
+                  <button class="scenario-card" data-scenario="grapheneBatteries" type="button">
+                    <span>Graphene Tech</span>
+                    <span class="cat">Medium Risk</span>
+                  </button>
+                  <button class="scenario-card" data-scenario="photosynthesis" type="button">
+                    <span>Photosynthesis</span>
+                    <span class="cat">Verified</span>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ai-text-input">Content to Verify</label>
+                <div class="textarea-container">
+                  <textarea id="ai-text-input" placeholder="Paste any AI-generated response text here, or click a demonstration scenario above..."></textarea>
+                  <span class="char-counter"><span id="char-count">0</span> characters</span>
+                </div>
+              </div>
+              <button class="btn-primary" id="btn-analyze-fact" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2c.57.14.76.69.76 1.25V13z"/><path d="m9 12 2 2 4-4"/></svg>
+                Trigger Fact-Verification Scan
+              </button>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="card" id="fact-results-view">
+              <div class="empty-state">
+                <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M17 12h-2l-2 5-2-10-2 5H7"/></svg>
+                <h3>Ready for Fact-Checking</h3>
+                <p>Paste AI-generated text or select a demonstration scenario on the left to compute the Hallucination Risk Score.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AI Quality Analytics -->
+        <section id="page-h-analytics" class="page-section">
+          <div class="grid-2 mb-20">
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Hallucination Risk Trend</div>
+              <div class="card-sub">Historical risk score trajectory across scans</div>
+              <div class="chart-wrap lg"><canvas id="chart-h-trend"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Failure Category Distribution</div>
+              <div class="card-sub">Proportions of detected factual errors</div>
+              <div class="chart-wrap lg"><canvas id="chart-h-cat"></canvas></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>Recent Fact-Check Audits</div>
+            <div class="card-sub">Click any past audit to re-evaluate</div>
+            <div class="history-list" id="fact-history-list"></div>
+          </div>
+        </section>
+
+      </div>
+      <!-- END AI TRUST GUARD PAGES -->
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ INTEGRATED AI ASSISTANT CHATBOT FAB ════════ -->
+<button class="chatbot-fab" id="chatbot-fab" title="AI Assistant">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+</button>
+
+<div class="chatbot-panel" id="chatbot-panel">
+  <div class="chatbot-head">
+    <div style="font-weight:700; font-size:0.88rem;">Learning Analytics AI Assistant</div>
+    <div class="chatbot-dot"></div>
+  </div>
+  <div class="chatbot-messages" id="chat-messages"></div>
+  <div class="chatbot-input-row">
+    <input class="chatbot-input" id="chat-input" placeholder="Ask about scores, attendance, study plan or fact checks..." />
+    <button class="chatbot-send" id="chat-send" aria-label="Send">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ UNIVERSAL REPORT VIEWER MODAL (Module 4.6.10) ═══ -->
+<div class="modal-overlay" id="modal-report-viewer">
+  <div class="modal-content" style="max-width:850px; background:var(--bg-root); border:1px solid var(--border);">
+    <div class="modal-header">
+      <h2 id="modal-report-title" style="font-size:1.15rem; color:var(--text-primary);">Academic Analytical Report</h2>
+      <button class="modal-close" id="btn-close-report-modal">&times;</button>
+    </div>
+    <div id="modal-report-content" style="max-height:70vh; overflow-y:auto; padding:12px 4px;"></div>
+    <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:0.75rem; color:var(--text-muted);">Tapi Diploma Engineering College • Official Student Records</span>
+      <div style="display:flex; gap:10px;">
+        <button class="btn-secondary" id="btn-close-report" type="button">Close</button>
+        <button class="btn-primary" id="btn-print-report" style="width:auto;" type="button">🖨️ Print / Save PDF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ASSIGNMENT SUBMISSION MODAL (Module 4.6.4) ═══ -->
+<div class="modal-overlay" id="modal-submit-assignment">
+  <div class="modal-content" style="max-width:540px;">
+    <div class="modal-header">
+      <h2 id="modal-asgn-title">Submit Coursework Assignment</h2>
+      <button class="modal-close" id="btn-close-submit-modal">&times;</button>
+    </div>
+    <div class="form-group">
+      <label>Assignment Topic</label>
+      <input type="text" id="asgn-submit-topic" class="calc-input" readonly />
+    </div>
+    <div class="form-group">
+      <label>Student Notes / Solution Link</label>
+      <textarea id="asgn-submit-notes" class="calc-input" style="height:100px; resize:vertical;" placeholder="Enter GitHub repository URL, hosted link, or solution summary..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Upload Supporting Files (.zip, .pdf, .cpp)</label>
+      <input type="file" id="asgn-submit-file" class="calc-input" style="padding:6px;" />
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="btn-cancel-submit-asgn" type="button">Cancel</button>
+      <button class="btn-primary" id="btn-confirm-submit-asgn" style="width:auto;" type="button">Submit to Faculty</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADD USER MODAL (Module 4.6.1) ═══ -->
+<div class="modal-overlay" id="modal-add-user">
+  <div class="modal-content" style="max-width:500px;">
+    <div class="modal-header">
+      <h2>Add New Academic User</h2>
+      <button class="modal-close" id="btn-close-add-user-modal">&times;</button>
+    </div>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="new-user-name" class="calc-input" placeholder="e.g. Aniket Desai" />
+    </div>
+    <div class="form-group">
+      <label>Institutional Email</label>
+      <input type="email" id="new-user-email" class="calc-input" placeholder="aniket.desai@tapidiploma.edu" />
+    </div>
+    <div class="form-group">
+      <label>Role</label>
+      <select id="new-user-role" class="calc-input">
+        <option value="Student">Student</option>
+        <option value="Teacher">Teacher / Faculty</option>
+        <option value="Administrator">Institutional Administrator</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Department</label>
+      <select id="new-user-dept" class="calc-input">
+        <option value="Computer Engg.">Computer Engineering</option>
+        <option value="Information Tech.">Information Technology</option>
+        <option value="AI & Data Science">AI & Data Science</option>
+        <option value="Electronics & Comm.">Electronics & Communication</option>
+        <option value="Mechanical Engg.">Mechanical Engineering</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="btn-cancel-add-user" type="button">Cancel</button>
+      <button class="btn-primary" id="btn-confirm-add-user" style="width:auto;" type="button">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SETTINGS MODAL ═════════════════════════════ -->
+<div class="modal-overlay" id="modal-settings">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>System & API Settings</h2>
+      <button class="modal-close" id="btn-close-modal">&times;</button>
+    </div>
+    <div class="form-group">
+      <label for="gemini-api-key">Google Gemini API Key (Optional)</label>
+      <input type="password" id="gemini-api-key" placeholder="AIzaSy... API Key">
+      <p class="form-help">If configured, live fact-checking scans will use Google Gemini API. When empty, the app runs gracefully on intelligent heuristic and dataset fallback models.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="btn-cancel-settings" type="button">Cancel</button>
+      <button class="btn-primary" id="btn-save-settings" style="width:auto;" type="button">Save Settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AI ASSIGNMENT GENERATOR MODAL ═════════════ -->
+<div class="modal-overlay" id="modal-gen-assignment">
+  <div class="modal-content" style="max-width: 520px;">
+    <div class="modal-header">
+      <h2>✨ Generate AI Practice Assignment</h2>
+      <button class="modal-close" id="btn-close-gen-modal">&times;</button>
+    </div>
+    <div class="form-group">
+      <label for="gen-assignment-subject">Select Subject</label>
+      <select id="gen-assignment-subject" class="calc-input">
+        <option value="Data Structures">💻 Data Structures & Algorithms</option>
+        <option value="Machine Learning">🤖 Machine Learning</option>
+        <option value="Web Technology">🌐 Web Technology</option>
+        <option value="DBMS">🗄️ Database Management Systems</option>
+        <option value="Software Engg.">📐 Software Engineering</option>
+        <option value="Computer Networks">📡 Computer Networks</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="gen-assignment-topic">Topic or Concept Focus</label>
+      <input type="text" id="gen-assignment-topic" class="calc-input" placeholder="e.g., Dynamic Programming, Convolutional Networks, SQL Triggers..." />
+    </div>
+    <div class="form-group">
+      <label for="gen-assignment-difficulty">Difficulty Level</label>
+      <select id="gen-assignment-difficulty" class="calc-input">
+        <option value="Intermediate">🟡 Intermediate (Standard Exam Level)</option>
+        <option value="Beginner">🟢 Beginner (Conceptual Warm-up)</option>
+        <option value="Advanced">🔴 Advanced (Competitive / Complex Project)</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="btn-cancel-gen-assignment" type="button">Cancel</button>
+      <button class="btn-primary" id="btn-submit-gen-assignment" style="width:auto;" type="button">Generate & Add to List</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ENROLLED ACTIVE COURSES MODAL ═══════════════ -->
+<div class="modal-overlay" id="modal-courses-list">
+  <div class="modal-content" style="max-width:840px; background:var(--bg-root); border:1px solid var(--border);">
+    <div class="modal-header">
+      <div>
+        <h2 style="font-size:1.2rem; color:var(--text-primary); display:flex; align-items:center; gap:8px;">
+          <span>📚</span> Active Enrolled Courses (CE Sem 6)
+        </h2>
+        <p style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Tapi Diploma Engineering College &bull; Computer Engineering Department &bull; Academic Year 2026</p>
+      </div>
+      <button class="modal-close" id="btn-close-courses-modal" aria-label="Close">&times;</button>
+    </div>
+
+    <!-- Summary Metrics -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:10px; margin:14px 0 16px;">
+      <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:10px 14px;">
+        <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Enrolled Subjects</div>
+        <div style="font-size:1.3rem; font-weight:800; color:var(--text-primary);">6 Courses</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:10px 14px;">
+        <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Total Credits</div>
+        <div style="font-size:1.3rem; font-weight:800; color:var(--indigo);">21 Credits</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:10px 14px;">
+        <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">On Target</div>
+        <div style="font-size:1.3rem; font-weight:800; color:var(--emerald);">4 Courses</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:10px 14px;">
+        <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Watch / Shortage</div>
+        <div style="font-size:1.3rem; font-weight:800; color:var(--amber);">2 Courses</div>
+      </div>
+    </div>
+
+    <!-- Courses Table / List Container -->
+    <div id="modal-courses-table-container" style="max-height:55vh; overflow-y:auto; border-radius:8px; border:1px solid var(--border);"></div>
+
+    <!-- Modal Footer Actions -->
+    <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:16px;">
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn-primary" id="btn-courses-to-quizzes" style="width:auto; font-size:0.8rem; padding:8px 14px;" type="button">📝 View Quizzes & Exams</button>
+        <button class="btn-secondary" id="btn-courses-to-asgn" style="width:auto; font-size:0.8rem; padding:8px 14px;" type="button">📁 View Assignments Hub</button>
+        <button class="btn-secondary" id="btn-courses-to-plan" style="width:auto; font-size:0.8rem; padding:8px 14px;" type="button">💡 AI Study Plan</button>
+      </div>
+      <button class="btn-secondary" id="btn-close-courses-footer" style="width:auto; font-size:0.8rem; padding:8px 16px;" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
